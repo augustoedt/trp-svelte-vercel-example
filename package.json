@@ -24,6 +24,7 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"prisma": "^4.7.1",
 		"svelte": "^3.53.1",
 		"svelte-check": "^2.9.2",
 		"svelte-preprocess": "^4.10.7",
@@ -34,9 +35,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^4.7.1",
 		"@trpc/client": "^10.4.3",
 		"@trpc/server": "^10.4.3",
 		"delay": "^5.0.0",
-		"trpc-sveltekit": "^3.0.8"
+		"trpc-sveltekit": "^3.0.8",
+		"zod": "^3.19.1"
 	}
 }

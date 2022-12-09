@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { PageServerData } from './$types';
+	import type { PageServerData } from './$types';
 
-  export let data: PageServerData;
+	export let data: PageServerData;
 </script>
 
 <h6>Data loaded in<br /><code>+page.ts</code></h6>

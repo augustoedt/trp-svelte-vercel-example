@@ -3,7 +3,9 @@
 // and what to do when importing types
 declare namespace App {
 	// interface Error {}
-	// interface Locals {}
+	interface Locals {
+		user: import('$lib/types').User | undefined;
+	}
 	// interface PageData {}
 	// interface Platform {}
 }
