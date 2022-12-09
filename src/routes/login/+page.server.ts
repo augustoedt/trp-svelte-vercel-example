@@ -1,9 +1,11 @@
+import { userFromCookie } from '$lib/common';
 import prisma from '$lib/prisma';
 import type { RouterInputs } from '$lib/trpc/routes';
 import { invalid, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-export const load: PageServerLoad = ({ locals }) => {
-	if (locals.user) throw redirect(302, '/profile');
+export const load: PageServerLoad = ({ locals, cookies }) => {
+	const user = userFromCookie(cookies);
+	if (user) throw redirect(302, '/profile');
 };
 
 export const actions: Actions = {
