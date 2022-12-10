@@ -1,4 +1,4 @@
-import type { User } from '$lib/types';
+import type { User } from '$lib/types/types';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { inferAsyncReturnType } from '@trpc/server';
 
@@ -7,11 +7,11 @@ import type { inferAsyncReturnType } from '@trpc/server';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function createContext(event: RequestEvent) {
 	const jwt = event.cookies.get('jwt');
-	console.log(jwt)
-	event.locals.user = jwt && JSON.parse(atob(jwt));
+	// console.log(jwt);
+	const user: User = jwt && JSON.parse(atob(jwt));
+	event.locals.user = user;
 	// 👆 or, if we're using HTTP headers based authentication, we could do something like this:
 	// const token = event.request.headers.get('authorization')?.replace('Bearer ', '');
-	const user : User = jwt && JSON.parse(atob(jwt));
 
 	return {
 		user: user

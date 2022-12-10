@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { navigating, page } from '$app/stores';
 	import { fade } from 'svelte/transition';
-
+	import type { LayoutData } from './$types';
+	export let data: LayoutData;
 	const routes = [
 		{ to: '/', title: 'Simple usage' },
 		{ to: '/page-data', title: 'Page data' },
@@ -16,8 +17,9 @@
 </svelte:head>
 
 <header>
-	<nav class="container">
-		<ul>
+	<nav>
+		{#if data.user != undefined} <div>{data.user.name}</div>{/if}
+		<ul class="nav-bar">
 			{#each routes as { to, title } (to)}
 				<li><a class:active={$page.url.pathname === to} href={to}>{title}</a></li>
 			{/each}
@@ -30,8 +32,16 @@
 	</div>
 </header>
 
-<main class="container">
+<main>
 	<slot />
 </main>
 
 <footer />
+
+<style>
+	.nav-bar {
+		display: flex;
+		list-style: none;
+		gap: 0.5rem;
+	}
+</style>

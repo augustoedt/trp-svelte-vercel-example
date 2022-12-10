@@ -4,7 +4,7 @@
 declare namespace App {
 	// interface Error {}
 	interface Locals {
-		user: import('$lib/types').User | undefined;
+		user: import('$lib/types/types').User | undefined;
 	}
 	// interface PageData {}
 	// interface Platform {}

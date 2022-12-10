@@ -3,12 +3,13 @@ import prisma from '$lib/prisma';
 import type { RouterInputs } from '$lib/trpc/routes';
 import { invalid, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-export const load: PageServerLoad = ({ locals, cookies }) => {
+export const load: PageServerLoad = ({ cookies }) => {
 	const user = userFromCookie(cookies);
 	if (user) throw redirect(302, '/profile');
 };
 
 export const actions: Actions = {
+	// from https://icflorescu.github.io/trpc-sveltekit/authentication
 	default: async ({ cookies, request }) => {
 		const data = await request.formData();
 		const email = data.get('email') as string;
@@ -24,16 +25,10 @@ export const actions: Actions = {
 				name: true
 			}
 		});
-		console.log(user);
 
 		if (user) {
-			/*
-			 ** AccessToken for your Authorization header request on your
-			 ** protected api routes.
-			 */
 			const value = btoa(JSON.stringify(user));
 			cookies.set('jwt', value, { path: '/' });
-			//end of mock login logic
 
 			throw redirect(307, '/profile');
 		} else {

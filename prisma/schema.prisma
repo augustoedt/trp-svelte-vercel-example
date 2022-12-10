@@ -1,5 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator zod {
+  provider              = "zod-prisma"
+  output                = "../src/lib/types/generated" // (default) the directory where generated zod schemas will be saved
+  relationModel         = true
+  modelCase             = "PascalCase"
+  modelSuffix           = "Model"
+  useDecimalJs          = false
+  prismaJsonNullability = true
+}
 
 generator client {
   provider = "prisma-client-js"
@@ -10,11 +19,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  id String @id @default(uuid())
-  email String
+model User {
+  id       String   @id @default(uuid())
+  ///@zod.email({message: "Endereço de email inválido"})
+  email    String
+  ///@zod.min(5,{message: "Mínimo de 5 caractéres"})
   password String
-  role String
-  name String
-  created DateTime @default(now())
+  role     String
+  ///@zod.min(5,{message: "Mínimo de 5 caractéres"})
+  name     String
+  created  DateTime @default(now())
 }
