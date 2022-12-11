@@ -2,4 +2,4 @@
 
 ## Credentials
 email: `a@a.com`
-password: `password`
+password: `fulano`
