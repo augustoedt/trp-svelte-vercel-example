@@ -1,5 +1,5 @@
-#Simple authentication login with tRPC + Sveltekit + Prisma in typescript
+# Authentication login with tRPC + Sveltekit + Prisma in typescript
 
-##Credentials
+## Credentials
 email: `a@a.com`
 password: `password`
